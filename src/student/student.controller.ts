@@ -80,5 +80,4 @@ export class StudentController {
     if (res === null) throw new NotFoundException('Student not found or old password incorrect');
     return res;
   }
-
 }

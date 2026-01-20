@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { StudentModule } from './student/student.module';
 import { AdminModule } from './admin/admin.module';
 import { ConfigModule } from '@nestjs/config';
+import { EmailModule } from './email/email.module';
 import 'dotenv/config';
 
 
@@ -19,6 +20,7 @@ import 'dotenv/config';
     }),
     StudentModule,
     AdminModule,
+    EmailModule,
   ],
 })
 export class AppModule {

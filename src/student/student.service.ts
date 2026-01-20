@@ -53,6 +53,7 @@ export class StudentService {
     console.log(student);
     const matches = await bcrypt.compare(password, student.password);
     if (!matches) return null;
+    
     const payload = {
       sub : student.id, 
       rollno: student.rollno,
@@ -69,6 +70,7 @@ export class StudentService {
     if (!student) return "student not found";
     const matches = await bcrypt.compare(oldPassword, student.password);
     if (!matches) throw new UnauthorizedException('Old password is incorrect');
+
     const salt = await bcrypt.genSalt(10);
     const hashed_password = await bcrypt.hash(newPassword, salt);
     await this.studentRepo.update(

@@ -27,6 +27,7 @@ export class AdminService {
   async validateAdmin(user_name: string, password: string) {
       const admin = await this.adminRepo.findOne({ where: { user_name } });
       if (!admin) return null;
+      
       const matches = await bcrypt.compare(password, admin.password);
       if (!matches) return null;
       const payload = {
@@ -45,6 +46,7 @@ export class AdminService {
         if (!admin) return "admin not found";
         const matches = await bcrypt.compare(oldPassword, admin.password);
         if (!matches) throw new UnauthorizedException('Old password is incorrect');
+      
         const salt = await bcrypt.genSalt(10);
         const hashed_password = await bcrypt.hash(newPassword, salt);
         await this.adminRepo.update(
