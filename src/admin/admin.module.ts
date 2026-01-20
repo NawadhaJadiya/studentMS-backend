@@ -5,11 +5,12 @@ import { AdminService } from './admin.service';
 import { Admin } from './admin.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from '../auth/auth.module';
+import 'dotenv/config';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Admin]), 
   JwtModule.register({
-      secret: 'secretEncryptionKey',       
+      secret: process.env.JWT_SECRET,       
       signOptions: { expiresIn: '1h' },
     }),
   AuthModule
