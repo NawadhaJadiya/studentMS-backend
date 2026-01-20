@@ -5,8 +5,12 @@ import 'dotenv/config';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
+    origin: [
+      'https://student-ms-frontend-119wzdv1q-nawadhajadiya-gmailcoms-projects.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   });
   await app.listen(process.env.PORT || 8080);
   
